@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test jest --watch --silent",
-    "build": "echo building!",
-    "start": "echo starting!"
+    "start": "pm2 start index.js --name whdeployer"
   },
   "repository": {
     "type": "git",
