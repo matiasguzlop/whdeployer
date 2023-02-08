@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest --watch --silent",
+    "test": "NODE_ENV=test jest --watch ",
     "start": "pm2 start index.js --name whdeployer"
   },
   "repository": {

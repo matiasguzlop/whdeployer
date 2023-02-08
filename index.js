@@ -20,6 +20,14 @@ app.post('/', async (req, res) => {
         if (signature !== expectedSignature)
             throw new Error("Invalid signature.");
 
+        const branch = req.body?.ref?.split("/").at(-1);
+
+        if (branch && req.body.repository.default_branch !== branch) {
+            console.log("Push from no master branch, rejected deployment");
+            res.status(304).end();
+            return;
+        }
+
         deploy(req.body.repository.ssh_url, req.body.repository.name);
 
         res.status(200).end();
