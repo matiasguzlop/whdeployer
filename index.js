@@ -28,7 +28,7 @@ app.post('/', async (req, res) => {
             return;
         }
 
-        deploy(req.body.repository.ssh_url, req.body.repository.name);
+        deploy(req.body.repository.ssh_url, req.body.repository.name, req.body.after);
 
         res.status(200).end();
     } catch (error) {
