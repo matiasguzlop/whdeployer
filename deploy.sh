@@ -3,12 +3,16 @@ sshURL=$1
 repoName=$2
 echo "Repository name: $repoName"
 echo "Deploying repository from url: $sshURL ... \n"
-rm -r -f ~/whdeploys/$repoName
 mkdir -p -m 755 ~/whdeploys
-mkdir -m 755 ~/whdeploys/$repoName
-git clone $sshURL ~/whdeploys/$repoName 
-echo "Installing dependencies..."
+mkdir -p -m 755 ~/whdeploys/$repoName
 cd ~/whdeploys/$repoName
+if [ -d ~/whdeploys/$repoName]
+then
+    git pull
+else
+    git clone $sshURL ~/whdeploys/$repoName 
+fi
+echo "Installing dependencies..."
 npm install
 build=$(npm run | grep build)
 if [ -z "$build" ]
